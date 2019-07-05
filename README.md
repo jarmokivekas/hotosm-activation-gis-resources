@@ -5,7 +5,7 @@ This file is a compilation of notes made during the Peru Activation regarding pr
 Most practical in this reporsitory are based to QGIS version 3.4 or 3.6, but any up-to-date version should do.
 
 
-# TM Projects With Multiplt Villages
+# TM Projects With Multiple Villages
 
 In areas where there are a large amount of small dispersed villages, it's effective to create individual tasks for the villages in the project.
 
@@ -33,6 +33,8 @@ Manually adding points may be necessary in some cases.
 Create a buffer around the estimated locations of the villages to create task boundaries. #6061 used a 500m buffer around point coordinates. The majority of small villages were able to fit inside the 500m buffer, but larger villages will extend beyond. Keep in mind that if the buffer is too large adjacent villages may end merging into one task that includes both villages. With a 500m buffer some villages still merged, but it was not an issue, mappers simply mapped both villages.
 
 The _Interest features to TM project tasks_ does this process automatically. Set the output to a `.geojson` file, and it will be directly compatible with TM.
+
+
 ![interest-features-to-tm-project-tasks.png](img/interest-features-to-tm-project-tasks.png)
 
 Same process manually:
@@ -49,9 +51,9 @@ Same process manually:
 1. Mappers should be explicitly instructed to map _outside_ the task area when needed since task are not adjacent. Some mappers will obey task the boundary, leaving the areas outside unmapped. Especially make sure validators are aware as well.
 2. Project #6061 consisted of 379 tasks spread along two larger rivers. For quick results, the project should have been split into at least two smaller projects, one per river. That way it would have been faster to produce contiguous areas of validated data. For large TM projects it takes a long time to have the entire area mapped and validated so that reliable maps can be created.
 
-# GIS workflows
 
-## Estimating the need for further mapping
+
+## Estimating further landuse mapping need
 
 Project #6061 had a total of 379 tasks, each corresponding to individual villages, ideally. *Question*: How many have a landuse=residential polygon mapped?
 
@@ -64,7 +66,7 @@ Project #6061 had a total of 379 tasks, each corresponding to individual village
 This method is applicable to any mapping features, e.g. roads, buildings.
 
 
-## Obtaining OSM data
+# Obtaining OSM data
 
 The HOT Export tool is good for this, especially for large areas. The QGIS QuickOSM plugin is convenient for downloading OSM data directly into QGIS using overpass turbo.
 
@@ -88,22 +90,30 @@ Exports in the Peru Activation used the HDX preset in the HOT Export Tool. It in
 2. For #6061, remote villages, landuse=residential polygons were added to the HDX preset YAML, as those were mapped during the project.
 3. Try to use a consistent YAML config file throughout the activation in different export products when possible.
 
+### Exporting Coastlines
+
+### Exporting Airports
+
 ## Export file formats
 
+Export at least
+
 - Shapefile, because it has wide support
-- Geopackage, modern Shapefile alternative
-- Garmin IMG for handheld devices
-- Google Earth KML, sure. Google Earth Pro (desktop version) supports ESRI shapefiles, though.
+- Geopackage, modern Shapefile alternative; some prefer it
+
+Export additionally perhaps
+- Garmin IMG for handheld devices.
+- Google Earth KML. Google Earth Pro (desktop version) supports ESRI shapefiles, but browser version don't.
 
 
 # Useful QGIS plugins
 
-- *QuickMapServices* provides TMS raster tile basemaps, including OSM tiles as well as Bing Aerial and Digital Globe Premium satellite imagery, which is are the primary sources of the OSM data in this activation-
+- *QuickMapServices* provides TMS raster tile basemaps, including OSM tiles, Bing, Digital Globe, and ERSI World satellite imagery, which is are common imagery sources used in for JOSM and iD
 - *Quick OSM* has a useful JOSM Remote feature, which uses the JSOM remote control to set the editing area to match the current QGIS canvas area.
 - *Quick OSM* can query overpass turbo with a very simple interface. This is useful for downloading OSM data for validation/analysis for a large area.
 - *OSMDownloader* allows downloading data from the OSM database into .osm files from QGIS by simple rectangle selection. QuickOSM is often more convenient
 
-When QuickOSM or OSMDownloader fail to download large datasets, use the HOT Export Tool.
+When QuickOSM or OSMDownloader fail to download large datasets, use the HOT Export Tool via a browser.
 
 # uMap collection of smaller dataset
 
@@ -125,7 +135,7 @@ uMap is quick and easy to use tool for sharing geodata.
 5. update the uMap whenever by pushing a new version of the file to GitHub
 
 
-## Reference Layers for JSOM
+# Reference Layers/grids for JSOM
 
 JOSM has somewhat limited ability to read in GIS datasets. To create gpx files with QGIS that are compatible with JSOM:
 
