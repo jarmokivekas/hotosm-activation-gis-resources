@@ -1,9 +1,24 @@
 # HOTOSM Activation GIS workflows
 
-This file is a compilation of notes made during the Peru Activation regarding procedures and toolchains that work well.
+This file is a compilation of notes made during HOTOSM activations for tasks relating to the Data, Usability, Imagery, and Validation roles.
 
 Most practical in this reporsitory are based to QGIS version 3.4 or 3.6, but any up-to-date version should do.
 
+
+# File Formats and Projections (CRS)
+
+Usually it's convenient to same small datasets as EPSG:4326 / WGS84 projected geojson files and use EPSG:3857 / Pseudo-Mercator as the project CRS.
+
+QGIS itself can deal with most GIS file formats and CRS mostly automatically, but many web-based tools can be very particular.
+
+Tool | File Format | Projection | Note
+-----|-------------|------------|
+Export Tool | Geojson | EPSG:4326 (WGS 84) | File should be one layer with one polygon only.
+Tasking Manager | Geojson | EPSG:4326 (WGS 84) | One polygon layer. Each polygon can be used as and individual project task.
+uMap | Geojson | EPSG:4326 (WGS 84) | May have arbitrary geometry and attribute data
+JOSM | GPX |  EPSG:4326 (WGS 84) | Point or line geometry. Deselect all attribute data fields when exporting from QGIS
+
+Apart from EPSG:4326 (WGS84) a much used projection is EPSG:3857 / Pseudo-Mercator, the default projection of OSM. The coordinate unit is meters instead of degrees, making it useful when e.g. buffering shapes
 
 # TM Projects With Multiple Villages
 
@@ -119,7 +134,7 @@ When QuickOSM or OSMDownloader fail to download large datasets, use the HOT Expo
 
 uMap is quick and easy to use tool for sharing geodata.
 
-- Give validatos exlicit areas of interest to validate, uMap has built-in josm remote and iD launcher.
+- Give validators explicit areas of interest to validate, uMap has built-in josm remote and iD launcher.
 - display all Tasking Manager projects for an activation in one map.
 - display areas where pre-made exports are available
 - display data that can be automatically update on the backend (see below)
@@ -146,12 +161,23 @@ JOSM has somewhat limited ability to read in GIS datasets. To create gpx files w
 5. JOSM: File > Open, choose gpx file
 
 
-# Tasking Manager Hidden Features
+# Download Task Squares
 
-These are not quite _features_ but API endpoint that are often useful
+The _Download TM Project Geojson File_ QGIS model in this repository can be used to download project tasks via QGIS as a geojson file.
 
-## Download Task Squares
+Or, use a browser to download TM project task squares as a geojson file directly from the API (project #6060 in this case):
 
-Download TM project task squares as a geojson file (project #6060 in this case) directly from the API: https://tasks.hotosm.org/api/v1/project/6060?as_file
+```
+https://tasks.hotosm.org/api/v1/project/6060?as_file
+```
 
-The _Download TM Project Geojson File_ QGIS model in this repository uses this API endpoint.
+## Configure Task Square Layer Style
+
+The QGIS style directory in this repository has a QGIS layer style definition file which will automatically color tasks based on their state (mapped/validated/bad imagery, etc.)
+
+1. Open layer properties the task square layer
+2. Bottom of the window: _Style_ > _Load Style_
+3. Select at least the _Symbology_ checkbox
+4. Select the [_TM project tasks_ style](QGIS-styles/STYLE-tm-project-tasks.qml) the file chooser
+5. _Load Style_
+6. _Apply_
