@@ -12,7 +12,7 @@ Usually it's convenient to same small datasets as EPSG:4326 / WGS84 projected ge
 QGIS itself can deal with most GIS file formats and CRS mostly automatically, but many web-based tools can be very particular.
 
 Tool | File Format | Projection | Note
------|-------------|------------|
+-----|-------------|------------|----
 Export Tool | Geojson | EPSG:4326 (WGS 84) | File should be one layer with one polygon only.
 Tasking Manager | Geojson | EPSG:4326 (WGS 84) | One polygon layer. Each polygon can be used as and individual project task.
 uMap | Geojson | EPSG:4326 (WGS 84) | May have arbitrary geometry and attribute data
@@ -132,10 +132,13 @@ When QuickOSM or OSMDownloader fail to download large datasets, use the HOT Expo
 
 # uMap collection of smaller dataset
 
-uMap is quick and easy to use tool for sharing geodata.
+[uMap](http://umap.openstreetmap.fr/) is quick and easy to use tool for sharing geodata.
+
+Some example usecases:
 
 - Give validators explicit areas of interest to validate, uMap has built-in josm remote and iD launcher.
-- display all Tasking Manager projects for an activation in one map.
+- Point experience mappers to cloud-covered areas novice mappers don't need to deal with bad imagery
+- display all Tasking Manager projects for an activation in one map to provide an overview
 - display areas where pre-made exports are available
 - display data that can be automatically update on the backend (see below)
 
@@ -148,6 +151,10 @@ uMap is quick and easy to use tool for sharing geodata.
     - Minimal set of commands on commandline: `git add datasets; git commit; git push origin master;`
 4. supply the GitHub link to the file as the input dataset in uMap.
 5. update the uMap whenever by pushing a new version of the file to GitHub
+
+# Mapping Cloud Covered Areas
+
+To steamline the mapping
 
 
 # Reference Layers/grids for JSOM
