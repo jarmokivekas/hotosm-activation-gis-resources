@@ -75,14 +75,14 @@ When a TM project is limited to an island, it's nice to use the coastline as the
     - in QGIS, use QuickOSM query for "natural"="coastline"
     - or download via export.hotosm.org or overpass turbo.
 2. OSM coastlines can be either polygons or lines. For coastlines that are represented as lines:
-    1. Make the coastline of every island is a single line, Vector Geometry > Dissolve
-    2. Convert the dissolved lies to polygons, Vector Geometry > Lines to polygons
-3. Merge the OSM coastline polygons and the new polygons created in step 2. Vector general > Merge vector layers
+    1. Ensure the coastline of every island is a single line, Vector Geometry > Dissolve
+    2. Convert the dissolved lines to polygons, Vector Geometry > Lines to polygons
+3. Merge the OSM coastline polygons and the new polygons created in step 2 into one layer. Vector general > Merge vector layers
 4. Create a buffer around the islands
-    1. Reproject to a projected CRS, e.g. `EPSG:3857`. Vector general > Reproject layer
+    1. Reproject to a projected CRS (so buffer unit is in meters, not degrees), e.g. `EPSG:3857` (Pseudo Mercator). Vector general > Reproject layer
     2. Create the actual buffer, e.g 250 meters. Vector Geometry > Buffer
-5. Dissolve buffer output to rnsure there is only one polygon for the TM project area. Vector geometry > Dissolve
-6. Export dissove output as geojson using `EPSG:4326` (WGS84) to use for project creation in TM
+5. Dissolve buffer output to ensure there is only one polygon for the TM project area. Vector geometry > Dissolve
+6. Export dissolve output as geojson using `EPSG:4326` (WGS84) to use for project creation in TM.
 
 
 
@@ -98,7 +98,10 @@ When a TM project is limited to an island, it's nice to use the coastline as the
 ![img/Screenshot-from-2020-03-25-2014-03-10.png](./img/Screenshot-from-2020-03-25-14-03-10.png)
 
 
-# Estimating need for mapping features
+
+
+
+# Estimating current mappedness of a feature class
 
 Project #6061 had a total of 379 tasks, each corresponding to individual villages, ideally. *Question*: How many have a landuse=residential polygon mapped?
 
