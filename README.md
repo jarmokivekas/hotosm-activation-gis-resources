@@ -2,33 +2,34 @@
 
 This file is a compilation of notes made during HOTOSM activations for tasks relating to the Data, Usability, Imagery, and Validation roles.
 
-Most practical in this reporsitory are based to QGIS version 3.4 or 3.6, but any up-to-date version should do.
-
+Most practical workflows described use recent versions of QGIS, but are typically general enough to perform in any GIS (Arc, python, R,...).
 
 # File Formats and Projections (CRS)
 
-Usually it's convenient to same small datasets as EPSG:4326 / WGS84 projected geojson files and use EPSG:3857 / Pseudo-Mercator as the project CRS.
+It's convenient to save small datasets as `EPSG:4326` (WGS84) projected geojson files. Many hotosm tools are web-based, and use geojson as the input and output format. QGIS itself can deal with most GIS file formats and CRS mostly automatically, but many web-based tools used in hotosm work can be very particular.
 
-QGIS itself can deal with most GIS file formats and CRS mostly automatically, but many web-based tools can be very particular.
+Use `EPSG:3857` (Pseudo-Mercator) as the project CRS in QGIS. `EPSG:3857` is the default projection of OSM. It's coordinate unit is meters instead of degrees, making it useful when e.g. buffering shapes. Most OMS tile sets and satellite imagery in published as TMS also use this CRS.
+
+
+Recommended file formats for different tools:
 
 Tool | File Format | Projection | Note
 -----|-------------|------------|----
 Export Tool | Geojson | EPSG:4326 (WGS 84) | File should be one layer with one polygon only.
-Tasking Manager | Geojson | EPSG:4326 (WGS 84) | One polygon layer. Each polygon can be used as and individual project task.
+Tasking Manager | Geojson | EPSG:4326 (WGS 84) | Project task definition file: one polygon layer, each polygon can be used as and individual project task.
 uMap | Geojson | EPSG:4326 (WGS 84) | May have arbitrary geometry and attribute data
 JOSM | GPX |  EPSG:4326 (WGS 84) | Point or line geometry. Deselect all attribute data fields when exporting from QGIS
 
-Apart from EPSG:4326 (WGS84) a much used projection is EPSG:3857 / Pseudo-Mercator, the default projection of OSM. The coordinate unit is meters instead of degrees, making it useful when e.g. buffering shapes
 
-# TM Projects With Multiple Villages
+# TM Projects for many small villages
 
-In areas where there are a large amount of small dispersed villages, it's effective to create individual tasks for the villages in the project.
+In areas where there are a large amount of small dispersed villages, it's effective to create individual tasks for the villages in the project. This prevents mappers' time being wasted searching through empty task squares.
 
-We user project [#6061 – Peru remote villages](https://tasks.hotosm.org/project/6061#bottom) as an example.
+We use project [#6061 – Peru remote villages](https://tasks.hotosm.org/project/6061#bottom) as an example.
 
 ![](img/6061-remote-village-screenshot.png)
 
-##  Estimate the locations of villages.
+## Step 1. Estimate the locations of villages.
 
 Build a layer with at least one feature per village.
 
@@ -43,16 +44,8 @@ Choosing which tags to target is a manual process. In #6061 it was lucky that th
 
 Manually adding points may be necessary in some cases.
 
-## Building the Tasking Manager Project.
+## Setp 2. Building the Tasking Manager Project.
 
-Create a buffer around the estimated locations of the villages to create task boundaries. #6061 used a 500m buffer around point coordinates. The majority of small villages were able to fit inside the 500m buffer, but larger villages will extend beyond. Keep in mind that if the buffer is too large adjacent villages may end merging into one task that includes both villages. With a 500m buffer some villages still merged, but it was not an issue, mappers simply mapped both villages.
-
-The _Interest features to TM project tasks_ does this process automatically. Set the output to a `.geojson` file, and it will be directly compatible with TM.
-
-
-![interest-features-to-tm-project-tasks.png](img/interest-features-to-tm-project-tasks.png)
-
-Same process manually:
 
 1. *Reproject* POIs to something suitable, such as *EPSG:3857* (WGS 84 Pseudo Mercator), where the coordinate unit is meters instead of degrees. Vector > Data Management Tools > Reproject Layer
 3. *Buffer* points of interest by 500m. Vector > Geoprocessing Tools > Buffer
@@ -61,14 +54,51 @@ Same process manually:
 6. Export features to *Geojson*, making sure to use the CRS *EPSG:4326* (WGS84). Right-click layer > Export > Save Features As
 7. Use the exported file as the task geometry in Tasking Manager.
 
-## Notes on #6061 - Peru remote villages
 
-1. Mappers should be explicitly instructed to map _outside_ the task area when needed since task are not adjacent. Some mappers will obey task the boundary, leaving the areas outside unmapped. Especially make sure validators are aware as well.
-2. Project #6061 consisted of 379 tasks spread along two larger rivers. For quick results, the project should have been split into at least two smaller projects, one per river. That way it would have been faster to produce contiguous areas of validated data. For large TM projects it takes a long time to have the entire area mapped and validated so that reliable maps can be created.
+In project #6061, the majority of small villages were able to fit inside the 500m buffer, but larger villages will extend beyond. Keep in mind that if the buffer is too large adjacent villages may end merging into one task that includes both villages. With a 500m buffer some villages still merged, but it was not an issue, mappers simply mapped both villages.
+
+The _Interest features to TM project tasks_ QGIS model in this repository does this process automatically. Set the output to a `.geojson` file, and it will be directly compatible with TM.
+
+![img/interest-features-to-tm-project-tasks.png](img/interest-features-to-tm-project-tasks.png)
+
+
+## Drawbacks:
+
+Mappers should be explicitly instructed to map _outside_ the task area when needed since task are not adjacent. Some mappers will obey task the boundary, leaving the areas outside unmapped. Especially make sure validators are aware as well.
+
+
+# TM Projects for Islands
+
+When a TM project is limited to an island, it's nice to use the coastline as the area. This reduces the number of unnecessary task squares that only have water in them.
+
+1. Download coastlines from OSM. Easiest using either:
+    - in QGIS, use QuickOSM query for "natural"="coastline"
+    - or download via export.hotosm.org or overpass turbo.
+2. OSM coastlines can be either polygons or lines. For coastlines that are represented as lines:
+    1. Make the coastline of every island is a single line, Vector Geometry > Dissolve
+    2. Convert the dissolved lies to polygons, Vector Geometry > Lines to polygons
+3. Merge the OSM coastline polygons and the new polygons created in step 2. Vector general > Merge vector layers
+4. Create a buffer around the islands
+    1. Reproject to a projected CRS, e.g. `EPSG:3857`. Vector general > Reproject layer
+    2. Create the actual buffer, e.g 250 meters. Vector Geometry > Buffer
+5. Dissolve buffer output to rnsure there is only one polygon for the TM project area. Vector geometry > Dissolve
+6. Export dissove output as geojson using `EPSG:4326` (WGS84) to use for project creation in TM
 
 
 
-## Estimating further landuse mapping need
+![img/Screenshot-from-2020-03-25-2014-02-03.png](./img/Screenshot-from-2020-03-25-14-02-03.png)
+
+
+![img/Screenshot-from-2020-03-25-2014-02-35.png](./img/Screenshot-from-2020-03-25-14-02-35.png)
+
+
+![img/Screenshot-from-2020-03-25-2014-02-57.png](./img/Screenshot-from-2020-03-25-14-02-57.png)
+
+
+![img/Screenshot-from-2020-03-25-2014-03-10.png](./img/Screenshot-from-2020-03-25-14-03-10.png)
+
+
+# Estimating need for mapping features
 
 Project #6061 had a total of 379 tasks, each corresponding to individual villages, ideally. *Question*: How many have a landuse=residential polygon mapped?
 
