@@ -1,0 +1,9 @@
+[general]
+name=HOTOSM Minimal
+description=HOTOSM Minimal plugin
+about=About this minimal HOTOSM plugin
+version=1.0
+qgisMinimumVersion=3.0
+author=Jarmo Kivekäs
+email=jarmo.kivekas@gmail.com
+repository=URL to the code repository
