@@ -1,3 +1,6 @@
 **/*.zip
 **/*.qgz
 **/*.pyc
+notebooks/*.pdf
+.coverage
+.noseids
