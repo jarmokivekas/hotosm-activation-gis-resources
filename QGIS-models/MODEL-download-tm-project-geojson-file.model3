@@ -1,95 +1,102 @@
 <!DOCTYPE model>
 <Option type="Map">
-  <Option name="children" type="Map">
-    <Option name="native:filedownloader_1" type="Map">
-      <Option name="active" value="true" type="bool"/>
+  <Option type="Map" name="children">
+    <Option type="Map" name="native:filedownloader_1">
+      <Option value="true" type="bool" name="active"/>
       <Option name="alg_config"/>
-      <Option name="alg_id" value="native:filedownloader" type="QString"/>
-      <Option name="component_description" value="Download file" type="QString"/>
-      <Option name="component_pos_x" value="418" type="double"/>
-      <Option name="component_pos_y" value="190" type="double"/>
+      <Option value="native:filedownloader" type="QString" name="alg_id"/>
+      <Option value="Download file" type="QString" name="component_description"/>
+      <Option value="467" type="double" name="component_pos_x"/>
+      <Option value="170" type="double" name="component_pos_y"/>
       <Option name="dependencies"/>
-      <Option name="id" value="native:filedownloader_1" type="QString"/>
-      <Option name="outputs" type="Map">
-        <Option name="Save As (.geojson)" type="Map">
-          <Option name="child_id" value="native:filedownloader_1" type="QString"/>
-          <Option name="component_description" value="Save As (.geojson)" type="QString"/>
-          <Option name="component_pos_x" value="617" type="double"/>
-          <Option name="component_pos_y" value="269" type="double"/>
-          <Option name="default_value" type="invalid"/>
-          <Option name="mandatory" value="false" type="bool"/>
-          <Option name="name" value="Save As (.geojson)" type="QString"/>
-          <Option name="output_name" value="OUTPUT" type="QString"/>
+      <Option value="native:filedownloader_1" type="QString" name="id"/>
+      <Option name="outputs"/>
+      <Option value="false" type="bool" name="outputs_collapsed"/>
+      <Option value="false" type="bool" name="parameters_collapsed"/>
+      <Option type="Map" name="params">
+        <Option type="List" name="URL">
+          <Option type="Map">
+            <Option value="@taskingmanagerinstanceurl || '/api/v1/project/' || to_string( to_int( @tmprojectnumber2 )) || '?as_file'" type="QString" name="expression"/>
+            <Option value="3" type="int" name="source"/>
+          </Option>
         </Option>
       </Option>
-      <Option name="outputs_collapsed" value="false" type="bool"/>
-      <Option name="parameters_collapsed" value="false" type="bool"/>
-      <Option name="params" type="Map">
-        <Option name="URL" type="List">
+    </Option>
+    <Option type="Map" name="native:loadlayer_1">
+      <Option value="true" type="bool" name="active"/>
+      <Option name="alg_config"/>
+      <Option value="native:loadlayer" type="QString" name="alg_id"/>
+      <Option value="Load layer into project" type="QString" name="component_description"/>
+      <Option value="600" type="double" name="component_pos_x"/>
+      <Option value="320" type="double" name="component_pos_y"/>
+      <Option name="dependencies"/>
+      <Option value="native:loadlayer_1" type="QString" name="id"/>
+      <Option name="outputs"/>
+      <Option value="true" type="bool" name="outputs_collapsed"/>
+      <Option value="true" type="bool" name="parameters_collapsed"/>
+      <Option type="Map" name="params">
+        <Option type="List" name="INPUT">
           <Option type="Map">
-            <Option name="expression" value="@taskingmanagerinstanceurl || '/api/v1/project/' || to_string( to_int( @tmprojectnumber2 )) || '?as_file'" type="QString"/>
-            <Option name="source" value="3" type="int"/>
+            <Option value="native:filedownloader_1" type="QString" name="child_id"/>
+            <Option value="OUTPUT" type="QString" name="output_name"/>
+            <Option value="1" type="int" name="source"/>
+          </Option>
+        </Option>
+        <Option type="List" name="NAME">
+          <Option type="Map">
+            <Option value=" 'tm-project-' ||  @tmprojectnumber2 " type="QString" name="expression"/>
+            <Option value="3" type="int" name="source"/>
           </Option>
         </Option>
       </Option>
     </Option>
   </Option>
-  <Option name="help" type="Map">
-    <Option name="ALG_CREATOR" value="Jarmo Kivekäs" type="QString"/>
-    <Option name="ALG_DESC" value="Downloads the Area of Interest and task squares for a given HOTOSM Tasking Manager project.&#xa;" type="QString"/>
-    <Option name="ALG_HELP_CREATOR" value="Jarmo Kivekäs" type="QString"/>
-    <Option name="ALG_VERSION" value="v0.1" type="QString"/>
-    <Option name="HELP_URL" value="" type="QString"/>
-    <Option name="SHORT_DESCRIPTION" value="Download TM project tasks as geojson file" type="QString"/>
-    <Option name="native:filedownloader_1:Save As (.geojson)" value="Path to .geojson file where the downloaded file is saved." type="QString"/>
-    <Option name="taskingmanagerinstanceurl" value="The base url of the Tasking Manager API endoint." type="QString"/>
-    <Option name="tmprojectnumber2" value="The tasking manager project number without a hash (#) symbol, e.g. '6211'" type="QString"/>
+  <Option type="Map" name="help">
+    <Option value="Jarmo Kivekäs" type="QString" name="ALG_CREATOR"/>
+    <Option value="Downloads the Area of Interest and task squares for a given HOTOSM Tasking Manager project.&#xa;" type="QString" name="ALG_DESC"/>
+    <Option value="Jarmo Kivekäs" type="QString" name="ALG_HELP_CREATOR"/>
+    <Option value="v0.1" type="QString" name="ALG_VERSION"/>
+    <Option value="" type="QString" name="HELP_URL"/>
+    <Option value="Download TM project tasks as geojson file" type="QString" name="SHORT_DESCRIPTION"/>
+    <Option value="Path to .geojson file where the downloaded file is saved." type="QString" name="native:filedownloader_1:Save As (.geojson)"/>
+    <Option value="The base url of the Tasking Manager API endoint." type="QString" name="taskingmanagerinstanceurl"/>
+    <Option value="The tasking manager project number without a hash (#) symbol, e.g. '6211'" type="QString" name="tmprojectnumber2"/>
   </Option>
-  <Option name="model_group" value="HOTOSM" type="QString"/>
-  <Option name="model_name" value="Download TM Project" type="QString"/>
-  <Option name="parameterDefinitions" type="Map">
-    <Option name="native:filedownloader_1:Save As (.geojson)" type="Map">
-      <Option name="create_by_default" value="true" type="bool"/>
-      <Option name="default" type="invalid"/>
-      <Option name="description" value="Save As (.geojson)" type="QString"/>
-      <Option name="file_filter" value="All files (*.*)" type="QString"/>
-      <Option name="flags" value="8" type="int"/>
+  <Option name="modelVariables"/>
+  <Option value="HOTOSM" type="QString" name="model_group"/>
+  <Option value="TM3 Dowload Project Extent" type="QString" name="model_name"/>
+  <Option type="Map" name="parameterDefinitions">
+    <Option type="Map" name="taskingmanagerinstanceurl">
+      <Option value="https://tasks.hotosm.org" type="QString" name="default"/>
+      <Option value="Tasking Manager Instance URL" type="QString" name="description"/>
+      <Option value="0" type="int" name="flags"/>
       <Option name="metadata"/>
-      <Option name="name" value="native:filedownloader_1:Save As (.geojson)" type="QString"/>
-      <Option name="parameter_type" value="fileDestination" type="QString"/>
-      <Option name="supports_non_file_outputs" value="true" type="bool"/>
+      <Option value="false" type="bool" name="multiline"/>
+      <Option value="taskingmanagerinstanceurl" type="QString" name="name"/>
+      <Option value="string" type="QString" name="parameter_type"/>
     </Option>
-    <Option name="taskingmanagerinstanceurl" type="Map">
-      <Option name="default" value="https://tasks.hotosm.org" type="QString"/>
-      <Option name="description" value="Tasking Manager Instance URL" type="QString"/>
-      <Option name="flags" value="0" type="int"/>
+    <Option type="Map" name="tmprojectnumber2">
+      <Option value="6211" type="QString" name="default"/>
+      <Option value="TM Project Number" type="QString" name="description"/>
+      <Option value="0" type="int" name="flags"/>
       <Option name="metadata"/>
-      <Option name="multiline" value="false" type="bool"/>
-      <Option name="name" value="taskingmanagerinstanceurl" type="QString"/>
-      <Option name="parameter_type" value="string" type="QString"/>
-    </Option>
-    <Option name="tmprojectnumber2" type="Map">
-      <Option name="default" value="6211" type="QString"/>
-      <Option name="description" value="TM Project Number" type="QString"/>
-      <Option name="flags" value="0" type="int"/>
-      <Option name="metadata"/>
-      <Option name="multiline" value="false" type="bool"/>
-      <Option name="name" value="tmprojectnumber2" type="QString"/>
-      <Option name="parameter_type" value="string" type="QString"/>
+      <Option value="false" type="bool" name="multiline"/>
+      <Option value="tmprojectnumber2" type="QString" name="name"/>
+      <Option value="string" type="QString" name="parameter_type"/>
     </Option>
   </Option>
-  <Option name="parameters" type="Map">
-    <Option name="taskingmanagerinstanceurl" type="Map">
-      <Option name="component_description" value="taskingmanagerinstanceurl" type="QString"/>
-      <Option name="component_pos_x" value="113" type="double"/>
-      <Option name="component_pos_y" value="108" type="double"/>
-      <Option name="name" value="taskingmanagerinstanceurl" type="QString"/>
+  <Option type="Map" name="parameters">
+    <Option type="Map" name="taskingmanagerinstanceurl">
+      <Option value="taskingmanagerinstanceurl" type="QString" name="component_description"/>
+      <Option value="113" type="double" name="component_pos_x"/>
+      <Option value="108" type="double" name="component_pos_y"/>
+      <Option value="taskingmanagerinstanceurl" type="QString" name="name"/>
     </Option>
-    <Option name="tmprojectnumber2" type="Map">
-      <Option name="component_description" value="tmprojectnumber2" type="QString"/>
-      <Option name="component_pos_x" value="112" type="double"/>
-      <Option name="component_pos_y" value="155" type="double"/>
-      <Option name="name" value="tmprojectnumber2" type="QString"/>
+    <Option type="Map" name="tmprojectnumber2">
+      <Option value="tmprojectnumber2" type="QString" name="component_description"/>
+      <Option value="112" type="double" name="component_pos_x"/>
+      <Option value="155" type="double" name="component_pos_y"/>
+      <Option value="tmprojectnumber2" type="QString" name="name"/>
     </Option>
   </Option>
 </Option>
