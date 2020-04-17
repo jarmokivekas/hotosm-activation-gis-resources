@@ -1,6 +1,11 @@
+
 **/*.zip
 **/*.qgz
 **/*.pyc
+
 notebooks/*.pdf
 .coverage
 .noseids
+
+# env file or sourcing API tokens (auth secret)
+.env
