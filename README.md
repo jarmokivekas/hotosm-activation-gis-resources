@@ -1,4 +1,7 @@
+
+
 # HOTOSM Activation GIS workflows
+
 
 This file is a compilation of notes made during HOTOSM activations for tasks relating to the Data, Usability, Imagery, and Validation roles.
 
