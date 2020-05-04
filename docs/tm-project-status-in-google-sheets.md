@@ -14,8 +14,6 @@ The end result is a spread sheet similar to this, which updates the fields autom
 XXX: add image
 
 
-
-
 # Using the TM API with `ImportJSON()`
 
 
@@ -23,11 +21,11 @@ Google Sheets does not by default understand the JSON format in which project st
 Luckily, that can be remedied using custom scripts right in the Google Sheets.
 
 
-You can access Tasking Manager data by adding the  `ImportJSON.gs` script from the `bradjasper/ImportJSON repository on GitHub` to you spreadsheet:
+You can access Tasking Manager data by adding the  `ImportJSON.gs` script from the [bradjasper/ImportJSON repository on GitHub](https://raw.githubusercontent.com/bradjasper/ImportJSON/master/ImportJSON.gs) to you spreadsheet:
 
 1. Create the sheet where you want the automated project summaries
 2. In Google Sheets open *Tools* > *Script Editor*. This should open a new tab with an empty text editor.
-3. Get the [`ImportJSON.gs` script](https://raw.githubusercontent.com/jarmokivekas/ImportJSON/master/ImportJSON.gs) and paste it into the Google Sheets script editor.
+3. Get the [`ImportJSON.gs` script](https://github.com/bradjasper/ImportJSON/blob/master/ImportJSON.gs) and paste it into the Google Sheets script editor.
 4. press ctrl-S to save the script
 1. Set the project name to `ImportJSON` if prompted for a name.
 
@@ -37,7 +35,7 @@ Now you should be able to get project data for project using the `ImportJSON` co
 =ImportJSON("https://tasks.hotosm.org/api/v1/project/8301/summary")
 ```
 
-By default it creates both column headers, and the data for that project on the next row.
+By default it creates outputs the column headers on the first row and the project data on the next row.
 
 ## Improving usability
 

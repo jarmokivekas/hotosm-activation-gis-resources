@@ -9,3 +9,4 @@ notebooks/*.pdf
 
 # env file or sourcing API tokens (auth secret)
 .env
+notebooks/*html
