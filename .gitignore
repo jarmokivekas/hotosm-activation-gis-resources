@@ -10,3 +10,5 @@ notebooks/*.pdf
 # env file or sourcing API tokens (auth secret)
 .env
 notebooks/*html
+#python vcr network traffic cache for testing
+test.yml
