@@ -1,4 +1,7 @@
-
+---
+title: Automated Tasking Manager date reports using GH pages
+author: Jarmo Kivekäs
+---
 
 
 ```makefile
