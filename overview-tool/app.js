@@ -106,22 +106,57 @@ function update_search_parameters(){
 
 
 
-
-
+var search_results = []
   
 update_search_parameters();
 
 const urlParams = new URLSearchParams(window.location.search); 
 
-get_api_data_v2(
-    "projects", 
-    {
+function get_search_results(page) {
+
+
+
+
+    api_call_params = {
         textSearch: urlParams.get("textSearch"),
         campaign: urlParams.get("campaign"),
         country: urlParams.get("country"),
         interest: urlParams.get("interest"),
-    }).then((projects_df) => {
-        console.log(projects_df);
-        tableCreate(projects_df);
+        page: page
     }
-);
+
+    get_api_data_v2("projects", api_call_params).then( (single_page_data) => {
+            
+        console.log(single_page_data.results);
+        search_results.concat(single_page_data["results"]);
+        console.log("appended to search results");
+        console.log(search_results);
+        
+
+        if (single_page_data.pagination.hasNext == true) {
+            console.log("found one more page")
+            page = page + 1;
+            get_search_results(page)
+        }
+
+            
+    });
+
+
+}
+
+// tableCreate(projects_df);
+get_search_results(page=1)  
+
+// get_api_data_v2(
+//     "projects", 
+//     {
+//         textSearch: urlParams.get("textSearch"),
+//         campaign: urlParams.get("campaign"),
+//         country: urlParams.get("country"),
+//         interest: urlParams.get("interest"),
+//     }).then((projects_df) => {
+//         console.log(projects_df);
+        
+//     }
+// );
