@@ -7,10 +7,38 @@ body {
 }
 
 
+.barlow-condensed {
+    font-family: "Barlow Condensed",sans-serif;
+}
+
+h1{
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: inline;
+    margin-right: 2rem;
+}
+
+
+.red {
+    color: #d73f3f;
+}
+
+.wireframe {
+    border: 1px solid #ecebed;
+}
+
+#topbar {
+    padding-left: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
 #banner{
+    font-family: "Barlow Condensed",sans-serif;
     padding: 1.5rem;
     border: 1px solid #ecebed;
 }
+
 
 #filter-card {
     float: left;

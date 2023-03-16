@@ -134,7 +134,8 @@ function get_search_results(page) {
         campaign: urlParams.get("campaign"),
         country: urlParams.get("country"),
         interest: urlParams.get("interest"),
-        page: page
+        projectStatuses: urlParams.get("projectStatuses"),
+        page: page,
     }
 
     get_api_data_v2("projects", api_call_params).then( (single_page_data) => {

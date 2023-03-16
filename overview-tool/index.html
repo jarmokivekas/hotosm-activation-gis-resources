@@ -9,10 +9,10 @@
 
   <meta charset="UTF-8" />
 
-  <title>Overview Tool</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
-  
+  <title>Activation Overview Tool</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Condensed:400,500,600,700%7CArchivo:400,500,600,700%7Csans-serif" media="all">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
 
 
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -24,12 +24,11 @@
 
 <body>
 
-
+    <div id="topbar" class="wireframe red barlow-condensed">Mapping our world together</div>
     <div id="banner">
-
-        <h1>Activaiton Overview Tool</h1>
-        <a href="./about">About</a>
-      </div>
+      <h1>Activation Overview</h1>
+      <a href="./about">About</a>
+    </div>
 
 
 <div id="filter-card">
@@ -56,13 +55,25 @@
 
         <label for="orderType">order type | <a href="" title="Not yet implemented">(?)</a></label><br>
         <select name="orderType" id="orderType">
-          <option value="ASC"></option>
-          <option value="DESC"></option>
+          <option value="ASC">Ascending</option>
+          <option value="DESC">Descending</option>
+        </select>
+
+        <br><br>
+
+        <label for="projectStatuses">Project status </label><br>
+        <select name="projectStatuses" id="projectStatuses">
+          <option value="ARCHIVED,PUBLISHED,DRAFT">Any status</option>
+          <option value="ARCHIVED">Archived</option>
+          <option value="PUBLISHED">Published</option>
+          <option value="DRAFT">Drafts</option>
+
         </select>
 
         <br><br>
 
         <input type="submit" value="Apply filter" class="bg-red">
+
 
   </form>
 
