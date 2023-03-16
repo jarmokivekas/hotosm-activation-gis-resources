@@ -20,7 +20,7 @@ body {
 
 }
 
-#dataframe-container { 
+#dataframe-container {
     /* display: block; */
     border: 1px solid #ecebed;
     width: auto;
@@ -30,22 +30,21 @@ body {
     padding: 1.5rem;
 }
 
-
-/* 
-legend {
-    background-color: #ecebed;
-    border-color:#ecebed;
-    border-width: 1px;    
-    padding: 5px 10px;
-} */
+hr {
+    border: 1px solid #ecebed;
+}
 
 label {
     margin-left: 5px;
 }
-input {
 
+input, select {
+    width: 90%;
     padding: 8px;
-    line-height: 1.15; 
+    line-height: 1.15;
+    border: 1px solid #ecebed;
+    background-color: white;
+ 
 }
 
 td {
@@ -69,7 +68,7 @@ tr:nth-child(even) {
 table {
     border-collapse: collapse;
     width: 100%;
-    
+
 }
 
 .bg-red {

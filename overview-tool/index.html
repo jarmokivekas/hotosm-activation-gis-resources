@@ -11,8 +11,11 @@
 
   <title>Overview Tool</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
 
   <link rel="icon" href="favicon.png">
@@ -24,17 +27,40 @@
 
     <div id="banner">
 
-        <h1>Overview Tool</h1>
-    </div>
+        <h1>Activaiton Overview Tool</h1>
+        <a href="./about">About</a>
+      </div>
 
 
 <div id="filter-card">
   <form action="#">
 
         <label for="textSearch">text search </label><br><input type="text" id="textSearch" name="textSearch"><br><br>
-        <label for="campaign">campaign | <a href="https://tasking-manager-tm4-production-api.hotosm.org/api/v2/campaigns/">(?)</a></label><br><input type="text" id="campaign" name="campaign"><br><br>
-        <label for="country">country | <a href="https://tasking-manager-tm4-production-api.hotosm.org/api/v2/countries/">(?)</a> </label><br><input type="text" id="country" name="country"><br><br>
-        <label for="interest">interest | <a href="https://tasking-manager-tm4-production-api.hotosm.org/api/v2/interests/">(?)</a></label><br><input type="text" id="interest" name="interest"><br><br>
+        <label for="campaign">campaign | <a title="click to open list of accepted values" href="https://tasking-manager-tm4-production-api.hotosm.org/api/v2/campaigns/">(?)</a></label><br><input type="text" id="campaign" name="campaign"><br><br>
+        <label for="country">country | <a   title="click to open list of accepted values" href="https://tasking-manager-tm4-production-api.hotosm.org/api/v2/countries/">(?)</a> </label><br><input type="text" id="country" name="country"><br><br>
+        <label for="interest">interest | <a title="click to open list of accepted values" href="https://tasking-manager-tm4-production-api.hotosm.org/api/v2/interests/">(?)</a></label><br><input type="text" id="interest" name="interest"><br><br>
+
+        <hr><br>
+
+        <label for="orderBy">order by <a href="" title="Not yet implemented">(?)</a></label><br>
+        <select name="orderBy" id="orderBy">
+          <option value="id">project ID</option>
+          <option value="difficulty">difficulty</option>
+          <option value="priority">priority</option>
+          <option value="status">status</option>
+          <option value="last_updated">last updated</option>
+          <option value="due_date">due date</option>
+        </select>
+
+        <br><br>
+
+        <label for="orderType">order type | <a href="" title="Not yet implemented">(?)</a></label><br>
+        <select name="orderType" id="orderType">
+          <option value="ASC"></option>
+          <option value="DESC"></option>
+        </select>
+
+        <br><br>
 
         <input type="submit" value="Apply filter" class="bg-red">
 
@@ -45,8 +71,10 @@
   <div id="dataframe-container">
   </div>
 
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
   <script src="app.js"></script>
-
+  
 </body>
 
 </html>

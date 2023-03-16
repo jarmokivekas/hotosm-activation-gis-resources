@@ -54,13 +54,20 @@ function tableCreate(search_results, page) {
         const dataframe_div = document.getElementById("dataframe-container"),
         
         tbl = document.createElement('table');
-        tbl.id = "dataframe-table"
+        tbl.id = "dataframe-table";
+        tbl.class = "display";
+
 
         // create the header row
         const tr = tbl.insertRow();
         for (column of columns) {
-            const td = tr.insertCell();
-            td.appendChild(document.createTextNode(column));
+
+            th = document.createElement('th');
+            th.innerHTML = column;
+            tr.appendChild(th);
+
+            // const td = tr.insertCell();
+            // td.appendChild(document.createTextNode(column));
             
         }
         dataframe_div.appendChild(tbl);
@@ -94,6 +101,7 @@ function tableCreate(search_results, page) {
         }
 
     }
+    
 }
   
 function update_search_parameters(){
@@ -151,15 +159,4 @@ function get_search_results(page) {
 
 get_search_results(page=1)  
 
-// get_api_data_v2(
-//     "projects", 
-//     {
-//         textSearch: urlParams.get("textSearch"),
-//         campaign: urlParams.get("campaign"),
-//         country: urlParams.get("country"),
-//         interest: urlParams.get("interest"),
-//     }).then((projects_df) => {
-//         console.log(projects_df);
-        
-//     }
-// );
+// let table = new DataTable('#dataframe-table');
