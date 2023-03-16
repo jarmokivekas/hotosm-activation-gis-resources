@@ -43,23 +43,31 @@ async function get_api_data_v2(
 
 
 
-function tableCreate(projects_df) {
-    const dataframe_div = document.getElementById("dataframe-table"),
-    
-    tbl = document.createElement('table');
+function tableCreate(search_results, page) {
 
     // list of the field names that will be included in the data table
     columns = ["projectId", "name", "percentMapped", "percentValidated", "priority", "difficulty", "status"];
 
-    // create the header row
-    const tr = tbl.insertRow();
-    for (column of columns) {
-        const td = tr.insertCell();
-        td.appendChild(document.createTextNode(column));
+    if (page == 1) {
+
+        console.log("creating table");
+        const dataframe_div = document.getElementById("dataframe-container"),
         
+        tbl = document.createElement('table');
+        tbl.id = "dataframe-table"
+
+        // create the header row
+        const tr = tbl.insertRow();
+        for (column of columns) {
+            const td = tr.insertCell();
+            td.appendChild(document.createTextNode(column));
+            
+        }
+        dataframe_div.appendChild(tbl);
     }
     
-    for (result of projects_df.results) {
+    tbl = document.getElementById("dataframe-table");
+    for (result of search_results) {
         const tr = tbl.insertRow();
         for (column of columns) {
             const td = tr.insertCell();
@@ -86,7 +94,6 @@ function tableCreate(projects_df) {
         }
 
     }
-    dataframe_div.appendChild(tbl);
 }
   
 function update_search_parameters(){
@@ -106,14 +113,11 @@ function update_search_parameters(){
 
 
 
-var search_results = []
-  
 update_search_parameters();
 
 const urlParams = new URLSearchParams(window.location.search); 
 
 function get_search_results(page) {
-
 
 
 
@@ -128,10 +132,10 @@ function get_search_results(page) {
     get_api_data_v2("projects", api_call_params).then( (single_page_data) => {
             
         console.log(single_page_data.results);
-        search_results.concat(single_page_data["results"]);
+        search_results = single_page_data.results;
         console.log("appended to search results");
         console.log(search_results);
-        
+        tableCreate(search_results, page);        
 
         if (single_page_data.pagination.hasNext == true) {
             console.log("found one more page")
@@ -145,7 +149,6 @@ function get_search_results(page) {
 
 }
 
-// tableCreate(projects_df);
 get_search_results(page=1)  
 
 // get_api_data_v2(

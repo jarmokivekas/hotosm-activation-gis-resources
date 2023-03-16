@@ -20,7 +20,7 @@ body {
 
 }
 
-#dataframe-table { 
+#dataframe-container { 
     /* display: block; */
     border: 1px solid #ecebed;
     width: auto;
