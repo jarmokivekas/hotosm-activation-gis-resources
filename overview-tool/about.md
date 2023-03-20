@@ -1,6 +1,8 @@
 ---
-title: Overview Tool | Help
+title: Overview Tool | Documentation
 author: Jarmo Kivekäs
+layout: hotosm-layout-overview-tool
+
 ---
 
 The overview tool is intended to help project managers to keep track of the progress of Tasking Manager mapping projects during an activation.
