@@ -1,5 +1,5 @@
 ---
-title: Overview Tool | Documentation
+title: Overview Tool | ABOUT
 author: Jarmo Kivekäs
 layout: hotosm-layout-overview-tool
 
