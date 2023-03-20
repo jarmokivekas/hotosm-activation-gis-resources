@@ -39,6 +39,12 @@ h1{
     border: 1px solid #ecebed;
 }
 
+#banner a {
+    padding-left: 2rem;
+    color: inherit;
+    text-decoration: none;
+}
+
 
 #filter-card {
     float: left;

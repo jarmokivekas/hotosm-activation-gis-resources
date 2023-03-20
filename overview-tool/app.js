@@ -135,6 +135,8 @@ function get_search_results(page) {
         country: urlParams.get("country"),
         interest: urlParams.get("interest"),
         projectStatuses: urlParams.get("projectStatuses"),
+        orderBy: urlParams.get("orderBy"),
+        orderByType: urlParams.get("orderByType"),
         page: page,
     }
 
