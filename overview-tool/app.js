@@ -109,7 +109,7 @@ function update_search_parameters(){
     const urlParams = new URLSearchParams(window.location.search); 
 
     form_inputs = [
-        "textSearch", "country", "campaign", "interest"
+        "textSearch", "country", "campaign", "interest", "orderBy", "orderByType", "projectStatuses"
     ]
 
     for (form_input of form_inputs) {
