@@ -45,7 +45,7 @@
 
         <label for="orderBy">order by</a></label><br>
         <select name="orderBy" id="orderBy">
-          <option value="id">project ID (chronological)</option>
+          <option value="id" selected="selected">project ID (chronological)</option>
           <option value="difficulty">difficulty</option>
           <option value="priority">priority</option>
           <option value="status">status</option>
@@ -56,7 +56,7 @@
         <br><br>
 
         <label for="orderByType">order type</a></label><br>
-        <select name="orderByType" id="orderByType">
+        <select name="orderByType" id="orderByType" value="ASC">
           <option value="ASC">Ascending</option>
           <option value="DESC">Descending</option>
         </select>
@@ -65,7 +65,7 @@
 
         <label for="projectStatuses">Project status </label><br>
         <select name="projectStatuses" id="projectStatuses">
-          <option value="ARCHIVED,PUBLISHED,DRAFT">Any status</option>
+          <option value="ARCHIVED,PUBLISHED,DRAFT" selected="selected">Any status</option>
           <option value="ARCHIVED">Archived</option>
           <option value="PUBLISHED">Published</option>
           <option value="DRAFT">Drafts</option>

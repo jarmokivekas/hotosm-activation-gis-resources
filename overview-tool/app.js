@@ -134,9 +134,9 @@ function get_search_results(page) {
         campaign: urlParams.get("campaign"),
         country: urlParams.get("country"),
         interest: urlParams.get("interest"),
-        projectStatuses: urlParams.get("projectStatuses"),
-        orderBy: urlParams.get("orderBy"),
-        orderByType: urlParams.get("orderByType"),
+        projectStatuses: urlParams.get("projectStatuses") ? urlParams.get("projectStatuses") : "ARCHIVED,PUBLISHED,DRAFT",
+        orderBy: urlParams.get("orderBy") ? urlParams.get("orderBy") : "id",
+        orderByType: urlParams.get("orderByType") ? urlParams.get("orderByType") : "ASC",
         page: page,
     }
 
@@ -160,6 +160,30 @@ function get_search_results(page) {
 
 }
 
+
+function preset_null_filters() {
+    // set default values to any filter that need to have one.
+
+    const select_ids = ["projectStatuses","orderBy","orderByType"]
+
+    for (select_id of select_ids) {
+        console.log(select_id)
+
+        var select = document.getElementById(select_id)
+        var value = urlParams.get(select_id)
+        if (!value) {
+            var default_value = select.firstElementChild.value
+            document.getElementById(select_id).value = default_value
+
+        }
+
+
+    }
+
+}
+
+
+preset_null_filters()
 get_search_results(page=1)  
 
 // let table = new DataTable('#dataframe-table');
