@@ -46,7 +46,7 @@ async function get_api_data_v2(
 function tableCreate(search_results, page) {
 
     // list of the field names that will be included in the data table
-    columns = ["projectId", "name", "percentMapped", "percentValidated", "priority", "difficulty", "status"];
+    columns = ["projectId", "name", "percentMapped", "percentValidated", "priority", "difficulty", "status", "organisationName"];
 
     if (page == 1) {
 
@@ -109,7 +109,7 @@ function update_search_parameters(){
     const urlParams = new URLSearchParams(window.location.search); 
 
     form_inputs = [
-        "textSearch", "country", "campaign", "interest", "orderBy", "orderByType", "projectStatuses"
+        "textSearch", "country", "campaign", "interest", "organisationName", "orderBy", "orderByType", "projectStatuses"
     ]
 
     for (form_input of form_inputs) {
@@ -134,6 +134,7 @@ function get_search_results(page) {
         campaign: urlParams.get("campaign"),
         country: urlParams.get("country"),
         interest: urlParams.get("interest"),
+        organisationName: urlParams.get("organisationName"),
         projectStatuses: urlParams.get("projectStatuses") ? urlParams.get("projectStatuses") : "ARCHIVED,PUBLISHED,DRAFT",
         orderBy: urlParams.get("orderBy") ? urlParams.get("orderBy") : "id",
         orderByType: urlParams.get("orderByType") ? urlParams.get("orderByType") : "ASC",
