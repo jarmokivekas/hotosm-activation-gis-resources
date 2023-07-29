@@ -42,6 +42,16 @@ async function get_api_data_v2(
 
 
 
+function formatDatetime(date) {
+
+    return date.getUTCFullYear() + "-" +
+        ("0" + (date.getUTCMonth()+1)).slice(-2) + "-" +
+        ("0" + date.getUTCDate()).slice(-2) + " " +
+        ("0" + date.getUTCHours()).slice(-2) + ":" +   // Get month and pad it with zeroes
+        ("0" + date.getUTCMinutes()).slice(-2) + " UTC"
+        
+}
+
 
 function tableCreate(search_results, page) {
 
@@ -95,8 +105,13 @@ function tableCreate(search_results, page) {
                     break;
                 case "lastUpdated":
                 case "dueDate":
-                    field_value = new Date(field_value)
-                    td.appendChild(document.createTextNode(field_value.toISOString()));
+  
+                    if (field_value == null) {
+                        break
+                    }
+                    date = new Date(field_value);
+                    date = formatDatetime(date);
+                    td.appendChild(document.createTextNode(date));
                     break;
                 default:
                     td.appendChild(document.createTextNode(field_value));
