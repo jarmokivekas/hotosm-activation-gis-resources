@@ -46,7 +46,7 @@ async function get_api_data_v2(
 function tableCreate(search_results, page) {
 
     // list of the field names that will be included in the data table
-    columns = ["projectId", "name", "percentMapped", "percentValidated", "priority", "difficulty", "status", "organisationName"];
+    columns = ["projectId", "name", "percentMapped", "percentValidated", "priority", "difficulty", "status", "organisationName", "lastUpdated", "dueDate"];
 
     if (page == 1) {
 

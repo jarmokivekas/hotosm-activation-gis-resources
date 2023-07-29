@@ -18,3 +18,10 @@ This project is free open source software. The source code is hosted at https://
 In it's current sate, this software is only a prototype I've in roughly one weeked worth of work. Ideally the features provided would eventually be integrated to the actual Tasking Manager.
 
 There is a github issue tracking the implementation of this to the tasking manager https://github.com/hotosm/tasking-manager/issues/3394
+
+
+# Change requests & Bug reports
+
+You can send me a message on the hotosm slack @jarmokivekas or even create and issue in the [github repository](https://github.com/jarmokivekas/hotosm-activation-gis-resources/issues)
+
+
