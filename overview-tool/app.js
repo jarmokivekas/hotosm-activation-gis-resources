@@ -93,6 +93,11 @@ function tableCreate(search_results, page) {
                     a = td.appendChild(link)
                     a.appendChild(document.createTextNode("#" + field_value));
                     break;
+                case "lastUpdated":
+                case "dueDate":
+                    field_value = new Date(field_value)
+                    td.appendChild(document.createTextNode(field_value.toISOString()));
+                    break;
                 default:
                     td.appendChild(document.createTextNode(field_value));
                     break;
